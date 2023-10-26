@@ -15,7 +15,8 @@ class Inventory(Base):
     id = Column(String(60), primary_key=True)
     name = Column(String(128), nullable=False)
     timezone = Column(Integer, default=0)
-    username = column(String(128), ForeignKey('users.username'), nullable=False)
+    username = column(String(128), ForeignKey('users.username'),
+                      nullable=False)
     items = relationship("Item", cascade="delete")
     transactions = relationship("Transaction", cascade="delete")
 

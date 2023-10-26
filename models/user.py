@@ -30,7 +30,6 @@ class User(Base):
         self.password, self.salt_used = hash_password(password)
         self.created_at = datetime.utcnow()
 
-
     def hash_password(password):
         """ Hashes the password and returns hash and salt used. """
         salt = secrets.token_hex(16)
