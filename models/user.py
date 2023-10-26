@@ -17,8 +17,8 @@ class User(Base):
     username = Column(String(60), primary_key=True)
     email = Column(String(128), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
-    self.password = Column(String(512), nullable=False)
-    self.salt_used = Column(String(60), nullable=False)
+    password = Column(String(512), nullable=False)
+    salt_used = Column(String(60), nullable=False)
     inventories = relationship("Inventory", cascade='delete')
 
     def __init__(self, last_name, first_name, username, email, password):
@@ -27,18 +27,19 @@ class User(Base):
         self.first_name = first_name
         self.username = username
         self.email = email
-        self.password, self.salt_used = hash_password(password)
+        self.hash_password(password)
         self.created_at = datetime.utcnow()
 
-    def hash_password(password):
+    def hash_password(self, password):
         """ Hashes the password and returns hash and salt used. """
         salt = secrets.token_hex(16)
         salted_password = salt + password
         hashed_password = hashlib.sha256(salted_password.encode()).hexdigest()
-        return (hashed_password, salt)
+        self.password = hashed_password
+        self.salt_used = salt
 
 
-    def verify_password(input_password):
+    def verify_password(self, input_password):
         """ Checks if given password is correct. """
         salted_password = self.salt_used + input_password
         hashed_password = hashlib.sha256(salted_password.encode()).hexdigest()

@@ -1,6 +1,6 @@
 """ Represent an Item in an inventory. """
 
-from model import Base
+from models import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, Float
 import uuid
 
@@ -26,3 +26,4 @@ class Item(Base):
         self.quantity = quantity
         self.unit = unit
         self.category = category
+        self.inventory_id = inventory_id
