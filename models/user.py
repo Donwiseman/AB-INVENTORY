@@ -38,7 +38,6 @@ class User(Base):
         self.password = hashed_password
         self.salt_used = salt
 
-
     def verify_password(self, input_password):
         """ Checks if given password is correct. """
         salted_password = self.salt_used + input_password
