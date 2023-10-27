@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<meta name="viewport" content="initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, width=device-width">
         <link rel="stylesheet" href="/static/styles/body.css">
+        <link rel="stylesheet" href="/static/styles/login.css">
     </head>
-    <body>
+    <body class="body">
         <div id="login">
             <form>
-                <h1> Sign In </h1>
+                <b><h1> Sign In </h1></b>
                 <div class="input-box">
-                    <input type="text" autofocus name="username" placeholder="username">
+                    <input type="text" autofocus required name="username" placeholder="username">
                 </div>
                 <div class="input-box">
-                    <input type="password" autofocus name="password" placeholder="password">
+                    <input type="password" required autofocus name="password" placeholder="password">
                 </div>
 
                 <div class="forgot"><a href="#">Forgot password?</a></div>
 
                 <button>Sign in</button>
-                <div id="sign">Don't have an account? <a href="#">Sign Up</a></div>
+                <div id="sign">Don't have an account? <a href="signup.html">Sign Up</a></div>
             </form>
         </div>
     </body>

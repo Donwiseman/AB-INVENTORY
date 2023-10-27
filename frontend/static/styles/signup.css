@@ -1,0 +1,46 @@
+#signup{
+    background: #fff;
+    width: 400px;
+    border-radius: 7px;
+}
+#signup .input-box {
+    width: 90%;
+    height: 50px;
+    margin: 0 auto 30px;
+}
+#signup .input-box input{
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgb(155, 148, 148);
+}
+#signup h1 {
+    font-size: 2em;
+    text-align: center;
+}
+
+button {
+    font-size: 1em;
+    background:  none;
+    border: none;
+    border: 2px solid rgb(155, 148, 148);
+    border-radius: 5px;
+    margin: 0 85px 30px 85px; 
+    width: 50%;
+    padding: 10px;
+}
+
+button:hover {
+    background:  rgb(76, 8, 179);
+    color: #fff;
+}
+
+#signin {
+    text-align: center;
+    margin: 0 auto 30px;
+
+}
+
+a {
+    text-decoration: none;
+}
