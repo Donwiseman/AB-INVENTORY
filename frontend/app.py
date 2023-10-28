@@ -3,14 +3,13 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
+def home():
+    return render_template('home.html')
+
+
 @app.route('/login.html', strict_slashes=False)
 def login():
     return render_template('login.html')
-
-
-@app.route('/home.html', strict_slashes=False)
-def home():
-    return render_template('home.html')
 
 
 @app.route('/signup.html', strict_slashes=False)
