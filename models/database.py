@@ -44,3 +44,8 @@ class Database:
             return self.__session.query(User).filter(User.username == username)
         else:
             return self.__session.query(User).all()
+
+    def get_user_inbentories(self, username):
+        """ Returns a list of specifies usr inventory."""
+        return self.__session.query(Inventory).filter(Inventory.username ==
+                                                      username)
