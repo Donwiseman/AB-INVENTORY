@@ -40,7 +40,7 @@ class Inventory(Base):
         from models import storage, Transaction
 
         new_quantity = item.add(quantity)
-        if !details:
+        if details is None:
             details = f"{quantity} {item.name} was added to {self.name}"
         trans = Transaction(self.id, self.timezone, 0, item, quantity,
                             new_quantity, details)
@@ -55,7 +55,7 @@ class Inventory(Base):
         new_quantity = item.remove(quantity)
         if new_quantity == -1:
             return None
-        if !details:
+        if details is None:
             details = f"{quantity} {item.name} was removed from {self.name}"
         trans = Transaction(self.id, self.timezone, 1, item, quantity,
                             new_quantity, details)

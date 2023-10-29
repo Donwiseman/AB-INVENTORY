@@ -63,3 +63,15 @@ class User(Base):
     def update_email(self, email):
         """ updates the user email address. """
         self.email = email
+
+    def create_inventory(self, name, timezone):
+        """Creates a new inventory foor this user."""
+        from models import storage, Inventory
+
+        for inventory in self.inventories:
+            if name == inventory.name:
+                return None
+        inv = Inventory(name, self.username, timezone)
+        storage.add(inv)
+        storage.save()
+        return inv
