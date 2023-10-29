@@ -31,28 +31,38 @@ class User(Base):
         self.first_name = first_name
         self.username = username
         self.email = email
-        self.update_password(password)
-        self.set_secret_question(secret_question, secret_answer)
+        self.password = self.__hash_token(password)
+        self.secret_answer = self.__hash_token(secret_answer)
+        self.secret_question = secret_question
         self.created_at = datetime.utcnow()
+
+    def __hash_token(self, token):
+        """ Hashes and returns a given parameter using specifies salt. """
+        salted_token = self.salt_used + token
+        hashed_token = hashlib.sha256(salted_token.encode()).hexdigest()
+        return hashed_token
 
     def update_password(self, password):
         """ Hashes the password and saves it. """
-        salted_password = self.salt_used + password
-        hashed_password = hashlib.sha256(salted_password.encode()).hexdigest()
-        self.password = hashed_password
+        from models import storage
+
+        self.password = self.__hash_token(password)
+        storage.add(self)
+        storage.save()
 
     def verify_password(self, input_password):
         """ Checks if given password is correct. """
-        salted_password = self.salt_used + input_password
-        hashed_password = hashlib.sha256(salted_password.encode()).hexdigest()
+        hashed_password = self.__hash_token(input_password)
         return hashed_password == self.password
 
     def set_secret_question(self, secret_question, secret_answer):
         """ Sets the secret_question and answer as an alternative login. """
+        from models import storage
+
+        self.secret_answer = self.__hash_token(secret_answer)
         self.secret_question = secret_question
-        salted_answer = self.salt_used + secret_answer
-        hashed_answer = hashlib.sha256(salted_answer.encode()).hexdigest()
-        self.secret_answer = hashed_answer
+        storage.add(self)
+        storage.save()
 
     def verify_secret_answer(self, secret_answer):
         """ Checks if given secret_answer is correct. """
@@ -62,7 +72,11 @@ class User(Base):
 
     def update_email(self, email):
         """ updates the user email address. """
+        from models import storage
+
         self.email = email
+        storage.add(self)
+        storage.save()
 
     def create_inventory(self, name, timezone):
         """Creates a new inventory foor this user."""
