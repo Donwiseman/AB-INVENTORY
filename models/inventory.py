@@ -35,7 +35,7 @@ class Inventory(Base):
                 result.append(item)
         return result
 
-    def add_item(self, item, quantity, purchase_cost, details=None):
+    def add_item(self, item, quantity, purchase_cost=-1, details=None):
         """ Adds more quantity of an item. """
         from models import storage, Transaction
 
@@ -43,10 +43,10 @@ class Inventory(Base):
         if details is None:
             details = f"{quantity} {item.name} was added to {self.name}"
         trans = Transaction(self.id, self.timezone, 0, item, quantity,
-                            new_quantity, details)
+                            new_quantity, purchase_cost, details)
         storage.add(trans)
         storage.save()
-        return tran
+        return trans
 
     def remove_item(self, item, quantity, details=None):
         """ Adds more quantity of an item. """
@@ -58,42 +58,43 @@ class Inventory(Base):
         if details is None:
             details = f"{quantity} {item.name} was removed from {self.name}"
         trans = Transaction(self.id, self.timezone, 1, item, quantity,
-                            new_quantity, details)
+                            new_quantity, -1,  details)
         storage.add(trans)
         storage.save()
         return trans
 
-    def delete_item(self, item):
+    def delete_item(self, item, loss=-1):
         """ deletes an item from the inventory. """
         from models import storage, Transaction
 
         details = f"{item.quantity} {item.name} was removed and {item.name} \
 deleted from {self.name} list"
         trans = Transaction(self.id, self.timezone, 1, item,
-                            item.quantity, 0, details)
+                            item.quantity, 0, loss, details)
         storage.delete(item)
+        storage.add(trans)
         storage.save()
         return trans
 
     def create_item(self, name, cost_price, sale_price, quantity=0,
-                    alert_level=0, unit=None, category=None):
+                    trans_val=-1, unit=None, category=None, alert_level=0):
         """ Adds an item to the inventory. """
         from models import storage, Item, Transaction
 
         details = f"Created {name} item and add {quantity} to {self.name}"
         item = Item(self.id, name, cost_price, sale_price, quantity,
-                    alert_level, unit, category)
+                    unit, category, alert_level)
         storage.add(item)
         trans = Transaction(self.id, self.timezone, 0, item,
-                            item.quantity, item.quantity, details)
+                            item.quantity, item.quantity, trans_val, details)
         storage.add(trans)
         storage.save()
         return item
 
-    def get_transactions(self, start_date, end_date, item_name):
+    def get_transactions(self, start_date, end_date, item_name=None):
         """ Returns a list of transactions for the date duration. """
-        tr_list = [trans for trans in self.transactions if start_time <=
-                   trans.date <= end_time]
+        tr_list = [trans for trans in self.transactions if start_date <=
+                   trans.date <= end_date]
         if item_name:
             fi_list = [trans for trans in tr_list if item_name == trans.item]
             return fi_list
@@ -102,14 +103,18 @@ deleted from {self.name} list"
     def get_a_transaction(self, tran_id):
         """ Returns a specific transaction. """
         for transaction in self.transactions:
-            if transaction.id == tran_id:
-                return tran
+            if transaction.transaction_id == tran_id:
+                return transaction
         return None
 
     def set_alert_all(self, quantity):
         """ sets the alert level for low amount for all items in inventory"""
+        from models import storage
+
         for item in self.items:
             item.alert_level = quantity
+            storage.add(item)
+        storage.save()
         return True
 
     def trigger_alerts(self):

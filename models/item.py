@@ -34,19 +34,28 @@ class Item(Base):
 
     def add(self, quantity):
         """ Adds given quantity of item to the inventory. """
+        from models import storage
+
         self.quantity += quantity
+        storage.save()
         return self.quantity
 
     def remove(self, quantity):
         """ Removes given quantity from the item. """
+        from models import storage
+
         if self.quantity >= quantity:
-            self.quantity -= qunatity
+            self.quantity -= quantity
+            storage.save()
             return self.quantity
         return -1
 
     def set_alert(self, alert_level):
         """ Sets the alert level for low quantity for this given item."""
+        from models import storage
+
         self.alert_level = alert_level
+        storage.save()
         return True
 
     def trigger_alert(self):
