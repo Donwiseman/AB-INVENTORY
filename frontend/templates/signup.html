@@ -6,7 +6,7 @@
     </head>
     <body class="body">
         <div id="signup">
-            <form>
+            <form method="POST" action="{{ url_for('signup') }}">
                 <h1> SIGN UP </h1>
                 <div class="input-box">
                     <input type="text" name="fname" id="f-name" placeholder="Enter your fisrt name" required>
@@ -33,7 +33,7 @@
                     <input type="password" name="rpword" placeholder="Comfirm password" required>
                 </div>
                 <button>Sign Up</button>
-                <div id="signin">Already have an account? <a href="login.html">Sign In</a></div>
+                <div id="signin">Already have an account? <a href="{{ url_for('signin') }}">Sign In</a></div>
             </form>
         </div>
     </body>

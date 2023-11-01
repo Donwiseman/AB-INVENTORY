@@ -7,7 +7,7 @@
     </head>
     <body class="body">
         <div id="login">
-            <form>
+            <form method="POST" action="{{ url_for('signin') }}">
                 <b><h1> Sign In </h1></b>
                 <div class="input-box">
                     <input type="text" autofocus required name="username" placeholder="username">
@@ -19,7 +19,7 @@
                 <div class="forgot"><a href="#">Forgot password?</a></div>
 
                 <button>Sign in</button>
-                <div id="sign">Don't have an account? <a href="signup.html">Sign Up</a></div>
+                <div id="sign">Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></div>
             </form>
         </div>
     </body>

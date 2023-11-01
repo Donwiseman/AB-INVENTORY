@@ -21,13 +21,13 @@ def signin():
         user_list = storage.get_users(username)
         if not user_list:
             # Wrong Username
-            return redirect(url_for('/signin'))
+            return redirect(url_for('signin'))
         user = user_list[0]
         if user.verify_password(password):
             session['username'] = username
             return f"You're logged in {user.first_name}"
         else:
-            return redirect(url_for('/signin'))
+            return redirect(url_for('signin'))
     return render_template('login.html')
 
 
@@ -36,11 +36,11 @@ def signup():
     """ Sign Up page. """
     if request.method == 'POST':
         if request.form['pword'] != request.form['rpword']:
-            return redirect(url_for('/signup'))
-        if not storage.get_users(request.form['username']):
-            return redirect(url_for('/signup'))
-        if not len(request.form['username']) < 7:
-            return redirect(url_for('/signup'))
+            return redirect(url_for('signup'))
+        if storage.get_users(request.form['username']):
+            return redirect(url_for('signup'))
+        if len(request.form['pword']) < 7:
+            return redirect(url_for('signup'))
         new_user = User(request.form['lname'], request.form['fname'],
                         request.form['username'], request.form['email'],
                         request.form['pword'], request.form['rq'],
@@ -48,7 +48,7 @@ def signup():
         storage.add(new_user)
         storage.save()
         session['username'] = new_user.username
-        return f"You're logged in {user.first_name}"
+        return f"You're logged in {new_user.first_name}"
     return render_template('signup.html')
 
 
@@ -56,7 +56,7 @@ def signup():
 def signout():
     """ Signs user out of session. """
     session.pop('username', None)
-    return redirect(url_for('/'))
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
