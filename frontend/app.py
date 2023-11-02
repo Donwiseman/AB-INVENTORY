@@ -59,5 +59,9 @@ def signout():
     return redirect(url_for('home'))
 
 
+@app.route('/dashboard', methods=['POST', 'GET'], strict_slashes=False)
+def dashboard(): 
+    return render_template('dashboard.html')
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

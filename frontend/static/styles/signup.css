@@ -46,3 +46,10 @@ button:hover {
 a {
     text-decoration: none;
 }
+
+.error{
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    margin-left: 5px;
+}

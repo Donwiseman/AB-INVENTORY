@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins", Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    background: rgb(79, 154, 112);
+}
+
+.side-bar{
+    background-color: rgb(84, 97, 97);
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    overflow-y: auto;
+}
+
+.side-bar.active{
+    left: 0;
+}
+
+.side-bar .menu{
+    width: 100%;
+    margin-top: 80px;
+    background-color: rgb(84, 97, 97, 0.2);
+}
+
+.side-bar .menu .items {
+    position: relative;
+    cursor: pointer;
+}
+
+.side-bar .menu .items a {
+    color: #fff;
+    font-size: 1.5em;
+    text-decoration: none;
+    display: block;
+    padding: 5px 30px;
+    line-height: 60px;
+}
+
+.side-bar .menu .items a:hover{
+    background: aqua;
+    color: black;
+    transition: 0.3s ease;
+}
+
+.side-bar .menu .items .sub-btn i {
+    margin-right: 15px;
+}
+
+.side-bar .menu .items a .dropdown{
+    position: absolute;
+    right: 0;
+    margin: 20px;
+}
+
+.side-bar .menu .items .sub-menu{
+    background-color: rgb(255, 255, 255, 0.1);
+    display: none;
+}
+
+.side-bar .menu .items .sub-menu a{
+    padding-left: 80px;
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+.side-bar .clo-btn{
+    position: absolute;
+    color: #fff;
+    font-size: 20px;
+    right: 0;
+    margin: 25px;
+    cursor: pointer;
+}
+
+.menu-btn {
+    position: absolute;
+    font-size: 20px;
+    margin: 25px;
+    cursor: pointer;
+}

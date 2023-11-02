@@ -3,38 +3,44 @@
     <head>
         <link rel="stylesheet" href="/static/styles/body.css">
         <link rel="stylesheet" href="/static/styles/signup.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body class="body">
         <div id="signup">
-            <form method="POST" action="{{ url_for('signup') }}">
+            <form id="signup" method="POST" action="{{ url_for('dashboard') }}">
                 <h1> SIGN UP </h1>
                 <div class="input-box">
-                    <input type="text" name="fname" id="f-name" placeholder="Enter your fisrt name" required>
+                    <input type="text" name="fname" id="f-name" placeholder="Enter your first name">
+                    <div id="nameErr" class="error"></div>
                 </div>
                 <div class="input-box">
-                    <input type="text" name="lname" id="l-name" placeholder="Enter your last name" required>
+                    <input type="text" name="lname" id="l-name" placeholder="Enter your last name">
+                    <div id="lnameErr" class="error"></div>
                 </div>
                 <div class="input-box">
-                    <input type="text" name="username" placeholder="Enter a username" required>
+                    <input type="text" name="email" id="e-mail" placeholder="Enter an email">
+                    <div id="emailErr" class="error"></div>
                 </div>
                 <div class="input-box">
-                    <input type="email" name="email" placeholder="Enter an email" required>
+                    <input type="text" name="rq" id="r-q" placeholder="Enter a recovery question">
+                    <div id="quesErr" class="error"></div>
                 </div>
                 <div class="input-box">
-                    <input type="text" name="rq" placeholder="Enter a recovery question" required>
+                    <input type="text" name="ra" id="r-a" placeholder="answer to you recovery question">
+                    <div id="quasErr" class="error"></div>
                 </div>
                 <div class="input-box">
-                    <input type="text" name="ra" placeholder="answer to you recovery question" required>
+                    <input type="password" name="pword" id="p-word" placeholder="Password must be atleast 7 characters">
+                    <div id="pwErr" class="error"></div>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="pword" placeholder="Password must be atleast 7 characters" required>
-                </div>
-                <div class="input-box">
-                    <input type="password" name="rpword" placeholder="Comfirm password" required>
+                    <input type="password" name="rpword" id="r-pword" placeholder="Comfirm password">
+                    <div id="rpwErr" class="error"></div>
                 </div>
                 <button>Sign Up</button>
                 <div id="signin">Already have an account? <a href="{{ url_for('signin') }}">Sign In</a></div>
             </form>
         </div>
+        <script src="/static/javascript/signup.js"></script>
     </body>
 </html>

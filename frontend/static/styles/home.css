@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background: rgb(177, 157, 205);
+    background: rgb(79, 154, 112);
 }
 
 nav{
@@ -36,5 +36,5 @@ section {
     width: 50%;
     font-size: 1.5em;
     margin: auto;
-    color:#fff;
+    color: rgb(217, 225, 228);
 }
