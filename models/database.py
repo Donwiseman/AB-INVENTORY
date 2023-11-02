@@ -50,3 +50,7 @@ class Database:
         """ Returns a list of specifies usr inventory."""
         return self.__session.query(Inventory).filter(Inventory.username ==
                                                       username).all()
+
+    def user_via_email(self, email):
+        """ Get user via their email. """
+        return self.__session.query(User).filter(User.email == email).all()

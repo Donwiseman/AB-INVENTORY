@@ -7,7 +7,7 @@
     </head>
     <body class="body">
         <div id="signup">
-            <form id="signup" method="POST" action="{{ url_for('dashboard') }}">
+            <form id="signup" method="POST" action="{{ url_for('signup') }}">
                 <h1> SIGN UP </h1>
                 <div class="input-box">
                     <input type="text" name="fname" id="f-name" placeholder="Enter your first name">
@@ -16,6 +16,10 @@
                 <div class="input-box">
                     <input type="text" name="lname" id="l-name" placeholder="Enter your last name">
                     <div id="lnameErr" class="error"></div>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="username" id="u-name" placeholder="Enter a username">
+                    <div id="u-nameErr" class="error"></div>
                 </div>
                 <div class="input-box">
                     <input type="text" name="email" id="e-mail" placeholder="Enter an email">
@@ -41,6 +45,17 @@
                 <div id="signin">Already have an account? <a href="{{ url_for('signin') }}">Sign In</a></div>
             </form>
         </div>
+	{% if error == 'username' %}
+	    <script>
+	        const element = document.getElementById('u-nameErr');
+		element.textContent = 'Username already exists';
+	    </script>
+	{% elif error == 'email' %}
+	    <script>
+	        const element = document.getElementById('emailErr');
+		element.textContent = 'Email already in use';
+	    </script>
+	{% endif %}
         <script src="/static/javascript/signup.js"></script>
     </body>
 </html>

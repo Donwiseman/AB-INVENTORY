@@ -15,7 +15,7 @@ class User(Base):
     last_name = Column(String(128), nullable=False)
     first_name = Column(String(128), nullable=False)
     username = Column(String(60), primary_key=True)
-    email = Column(String(128), nullable=False)
+    email = Column(String(128), nullable=False, unique=True)
     secret_question = Column(String(512), nullable=False)
     secret_answer = Column(String(512), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)

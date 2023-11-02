@@ -44,7 +44,7 @@ $(document).ready(function(){
             $('#quasErr').text('')
         }
 
-        if (pword.length < 8) {
+        if (pword.length < 7) {
             $('#pwErr').text("Password should be atleast 7 characters")
             event.preventDefault()
         } else {

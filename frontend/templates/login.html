@@ -7,13 +7,15 @@
     </head>
     <body class="body">
         <div id="login">
-            <form method="POST" action="{{ url_for('dashboard') }}">
+            <form method="POST" action="{{ url_for('signin') }}">
                 <b><h1> Sign In </h1></b>
                 <div class="input-box">
-                    <input type="email" autofocus required name="username" placeholder="username">
+                    <input type="text" autofocus required name="username" placeholder="username or email">
+		    <div id="u-nameErr" class="error"></div>
                 </div>
                 <div class="input-box">
                     <input type="password" required autofocus name="password" placeholder="password">
+		    <div id="pwordErr" class="error"></div>
                 </div>
 
                 <div class="forgot"><a href="#">Forgot password?</a></div>
@@ -22,5 +24,16 @@
                 <div id="sign">Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></div>
             </form>
         </div>
+	{% if error == 'username' %}
+	    <script>
+	        const element = document.getElementById('u-nameErr');
+		element.textContent = 'Username or Email is Wrong';
+	    </script>
+	{% elif error == 'password' %}
+	    <script>
+	        const element = document.getElementById('pwordErr');
+		element.textContent = 'Password Incorrect';
+	    </script>
+	{% endif %}
     </body>
 </html>
