@@ -66,8 +66,50 @@ def signout():
 
 
 @app.route('/dashboard', methods=['POST', 'GET'], strict_slashes=False)
-def dashboard(): 
-    return render_template('dashboard.html')
+def dashboard():
+    """ Displays user specific dashboard. """
+    try:
+        user = storage.get_users(session['username'])[0]
+    except Exception:
+        return redirect(url_for('signin'))
+    return render_template('dashboard.html', user=user)
+
+
+@app.route('/inventory/<inventory_id>', strict_slashes=False)
+def inventory(inventory_id):
+    """ Displays user choosen inventory Page. """
+    try:
+        inv = storage.get_inventory(inventory_id)[0]
+        session['inventory_id'] = inventory_id
+    except Exception:
+        return redirect(url_for('dashboard'))
+    return f"You are viewing your {inv.name}"
+
+
+@app.route('/inventory/create', methods=['POST', 'GET'], strict_slashes=False)
+def add_inventory():
+    """ Creates an inventory for the user. """
+    try:
+        user = storage.get_users(session['username'])[0]
+    except Exception:
+        return redirect(url_for('dashboard'))
+    return f"We are working on implementing this."
+
+
+@app.route('/inventory/transactions', strict_slashes=False)
+def show_transactions():
+    """ Shows all transactions by a user_inventory. """
+    try:
+        user = storage.get_users(session['username'])[0]
+    except Exception:
+        return redirect(url_for('dashboard'))
+    return f"Still working...."
+
+
+@app.teardown_appcontext
+def app_teardown(exception=None):
+    """ Help in closing each request session. """
+    storage.end_session()
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
