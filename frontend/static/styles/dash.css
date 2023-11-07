@@ -9,6 +9,36 @@ body{
     background: rgb(79, 154, 112);
 }
 
+nav{
+    position: relative;
+    box-shadow: 5px 10px 15px 0px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2px;
+    font-size: 1.5em;
+    height: 60px;
+    background: #fff;
+}
+
+.side-bar, .heading, .signed {
+  padding: 10px;
+}
+
+.heading {
+  flex: 1;
+  text-align: center;
+  color: rgb(79, 154, 112);
+}
+
+.signed {
+  position: absolute;
+  top: 50%;
+  right: 1%;
+  transform: translateY(-50%);
+  color: rgb(79, 154, 112);
+}
+
 .side-bar{
     background-color: rgb(84, 97, 97);
     width: 260px;

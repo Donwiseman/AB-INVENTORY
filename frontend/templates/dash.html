@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/styles/dash.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <nav>
+	    <div class="signed"><i>{{ user.username }}</i></div>
+            <div class="menu-btn"><i class="fas fa-bars"></i></div>
+            <div class="side-bar">
+                <div class="clo-btn"><i class="fas fa-times"></i></div>
+                <div class="menu">
+                    <div class="items"><a href="{{ url_for('home') }}">Home</a></div>
+                    <div class="items"><a class="sub-btn">Inventory<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+		        {% for inventory in user.inventories %}
+		            <a class="sub-item" href="{{ url_for('inventory', inventory.id) }}">{{ inventory.name }}</a>
+		        {% endfor %}
+                            <a class="sub-item" href="{{ url_for('add_inventory') }}">Create</a>
+                        </div>
+                    </div>
+                    <div class="items"><a href="{{ url_for('show_transactions') }}">Transactions</a></div>
+                    <div class="items"><a href="{{ url_for('signout') }}">Sign Out</a></div>
+                    <div class="items"><a href="{{ url_for('home') }}">About</a></div>
+                </div>
+            </div>
+	    <div class="heading">{% block navhead %}{% endblock %}</div>
+	</nav>
+        <script src="/static/javascript/script.js"></script>
+	{% block content %}{% endblock %}
+    </body>
+</html>

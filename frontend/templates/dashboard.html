@@ -1,27 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="/static/styles/dash.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <div class="menu-btn"><i class="fas fa-bars"></i></div>
-        <div class="side-bar">
-            <div class="clo-btn"><i class="fas fa-times"></i></div>
-            <div class="menu">
-                <div class="items"><a href="#">Home</a></div>
-                <div class="items"><a class="sub-btn" href="#">Inventory<i class="fas fa-angle-right dropdown"></i></a>
-                    <div class="sub-menu">
-                        <a class="sub-item" href="#">Create</a>
-                        <a class="sub-item" href="#">View</a>
-                    </div>
-                </div>
-                <div class="items"><a href="#">Transactions</a></div>
-                <div class="items"><a href="#">Sign Out</a></div>
-                <div class="items"><a href="#">About</a></div>
-            </div>
-        </div>
-        <script src="/static/javascript/script.js"></script>
-    </body>
-</html>
+{% extends "dash.html" %}
+{% block navhead %}
+    <h3>My Dashboard</h3>
+{% endblock %}
+{% block content %}
+   <p>Should contain list of items here</P>
+{% endblock %}
