@@ -1,7 +1,22 @@
 {% extends "dash.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="/static/styles/dashboard.css">
+{% endblock %}
 {% block navhead %}
     <h3>My Dashboard</h3>
 {% endblock %}
 {% block content %}
-   <p>Should contain list of items here</P>
+    <div class="li-inv">
+        <header>INVENTORY LIST</header>
+        <ul>
+        {% for inventory in user.inventories %}
+	    <li>
+                <a class="li-a" href="{{ url_for('inventory', inventory_id=inventory.id) }}">{{ inventory.name }}</a>
+	    </li>
+        {% endfor %}
+	    <li>
+                <a class="li-a" href="{{ url_for('add_inventory') }}">Create New Inventory</a>
+	    </li>
+        </ul>
+    </div>
 {% endblock %}
