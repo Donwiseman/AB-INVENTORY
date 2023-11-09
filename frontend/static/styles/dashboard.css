@@ -1,0 +1,19 @@
+.li-inv {
+  text-align: center;
+}
+
+.li-inv header {
+  font-size: 100px;
+  color: blue;
+}
+
+.li-inv ul {
+  list-style-type: square;
+}
+
+.li-inv li {
+  list-style: square;
+  padding: 20px;
+  font-size: 60px;
+  color: purple;
+}

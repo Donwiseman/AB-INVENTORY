@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="/static/styles/dash.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	{% block styles %}{% endblock %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
@@ -16,7 +17,7 @@
                     <div class="items"><a class="sub-btn">Inventory<i class="fas fa-angle-right dropdown"></i></a>
                         <div class="sub-menu">
 		        {% for inventory in user.inventories %}
-		            <a class="sub-item" href="{{ url_for('inventory', inventory.id) }}">{{ inventory.name }}</a>
+		            <a class="sub-item" href="{{ url_for('inventory', inventory_id=inventory.id) }}">{{ inventory.name }}</a>
 		        {% endfor %}
                             <a class="sub-item" href="{{ url_for('add_inventory') }}">Create</a>
                         </div>
