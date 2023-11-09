@@ -11,11 +11,11 @@
         <ul>
         {% for inventory in user.inventories %}
 	    <li>
-                <a class="li-a" href="{{ url_for('inventory', inventory_id=inventory.id) }}" target="_blank">{{ inventory.name }}</a>
+                <a class="li-a" href="{{ url_for('inventory', inventory_id=inventory.id) }}">{{ inventory.name }}</a>
 	    </li>
         {% endfor %}
 	    <li>
-                <a class="li-a" href="{{ url_for('add_inventory') }}" target="_blank">Create New Inventory</a>
+                <a class="li-a" href="{{ url_for('add_inventory') }}">Create New Inventory</a>
 	    </li>
         </ul>
     </div>
