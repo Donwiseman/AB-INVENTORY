@@ -17,7 +17,7 @@
                     <div class="items"><a class="sub-btn">Inventory<i class="fas fa-angle-right dropdown"></i></a>
                         <div class="sub-menu">
 		        {% for inventory in user.inventories %}
-		            <a class="sub-item" href="{{ url_for('inventory', inventory.id) }}">{{ inventory.name }}</a>
+		            <a class="sub-item" href="{{ url_for('inventory', inventory_id=inventory.id) }}">{{ inventory.name }}</a>
 		        {% endfor %}
                             <a class="sub-item" href="{{ url_for('add_inventory') }}">Create</a>
                         </div>

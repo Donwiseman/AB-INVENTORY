@@ -7,12 +7,16 @@
 {% endblock %}
 {% block content %}
     <div class="li-inv">
-        <h3>INVENTORY LIST</h3>
+        <header>INVENTORY LIST</header>
         <ul>
         {% for inventory in user.inventories %}
-            <li href="{{ url_for('inventory', inventory.id) }}">{{ inventory.name }}</li>
+	    <li>
+                <a class="li-a" href="{{ url_for('inventory', inventory_id=inventory.id) }}" target="_blank">{{ inventory.name }}</a>
+	    </li>
         {% endfor %}
-            <li href="{{ url_for('add_inventory') }}">Create New Inventory</li>
+	    <li>
+                <a class="li-a" href="{{ url_for('add_inventory') }}" target="_blank">Create New Inventory</a>
+	    </li>
         </ul>
     </div>
 {% endblock %}
