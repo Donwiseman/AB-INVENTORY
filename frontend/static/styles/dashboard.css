@@ -1,9 +1,10 @@
 .li-inv {
+  font-size: 2em;
   text-align: center;
 }
 
 .li-inv header {
-  font-size: 100px;
+  margin-top: 30px;
   color: blue;
 }
 
@@ -13,7 +14,7 @@
 
 .li-inv li {
   list-style: square;
+  text-decoration: none;
   padding: 20px;
-  font-size: 60px;
   color: purple;
 }
