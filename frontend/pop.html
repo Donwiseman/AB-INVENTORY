@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="prac.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Main Page</title>
+</head>
+<body>
+    <button id="open-popup">Create Inventory</button>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" id="close-popup">&times;</span>
+            <center><h2>Create Inventory</h2></center>
+            <form id="inventory-form" action="{{ url_for('create_inventory') }}">
+                <div class="input-box">
+                    <label for="inventory-name">Inventory Name:</label><br>
+                    <input class="text" type="text" name="inventory-name" id="inventory-name" required>
+                </div>
+                <div class="input-box">
+                    <label for="timezone">Choose a timezone:</label><br>
+                    <select class="text" name="timezone">
+                      <option value="" selected>--Please select a timezone--</option>
+                      <option value="">GMT</option>
+                      <option value="">EAT</option>
+                      <option value="">CET</option>
+                      <option value="">WAT</option>
+                      <option value="">CAT</option>
+                      <option value="">EET</option>
+                      <option value="">SAST</option>
+                    </select>
+                </div>
+                <center><button id="submit" type="submit">submit</button></center>
+            </form>
+        </div>
+    </div>
+
+    <script src="prac.js"></script>
+</body>
+</html>
