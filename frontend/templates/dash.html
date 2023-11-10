@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/static/styles/dash.css">
+	<link rel="stylesheet" href="/static/styles/create_inv.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 	{% block styles %}{% endblock %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -19,7 +22,7 @@
 		        {% for inventory in user.inventories %}
 		            <a class="sub-item" href="{{ url_for('inventory', inventory_id=inventory.id) }}">{{ inventory.name }}</a>
 		        {% endfor %}
-                            <a class="sub-item" href="{{ url_for('add_inventory') }}">Create</a>
+                            <a class="open-popup" class="sub-item">Create</a>
                         </div>
                     </div>
                     <div class="items"><a href="{{ url_for('show_transactions') }}">Transactions</a></div>
@@ -29,7 +32,34 @@
             </div>
 	    <div class="heading">{% block navhead %}{% endblock %}</div>
 	</nav>
-        <script src="/static/javascript/script.js"></script>
+        <div class="overlay" id="overlay"></div>
+
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <span class="close" id="close-popup">&times;</span>
+                <center><h2>Create Inventory</h2></center>
+                <form method="POST" id="inventory-form" action="{{ url_for('add_inventory') }}">
+                    <div class="input-box">
+                        <label for="inventory-name">Inventory Name:</label><br>
+                        <input class="text" type="text" name="inventory-name" id="inventory-name" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="timezone">Choose a timezone:</label><br>
+                        <select class="text" name="timezone">
+                            <option value="" selected>--Please select a timezone--</option>
+			{% for timezone in timezones %}
+			    <option value="{{ timezone }}">{{ timezone }}</option>
+		        {% endfor %}
+                        </select>
+                    </div>
+                    <center><button id="submit" type="submit">submit</button></center>
+                </form>
+            </div>
+        </div>
+
 	{% block content %}{% endblock %}
+
+        <script src="/static/javascript/create_inv.js"></script>
+        <script src="/static/javascript/script.js"></script>
     </body>
 </html>

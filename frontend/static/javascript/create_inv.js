@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#open-popup").click(function() {
+    $(".open-popup").click(function() {
         $("#overlay").fadeIn();
         $("#popup").fadeIn();
     });

@@ -117,3 +117,10 @@ nav{
     margin: 25px;
     cursor: pointer;
 }
+
+.sub-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}

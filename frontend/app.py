@@ -73,7 +73,8 @@ def dashboard():
         user = storage.get_users(session['username'])[0]
     except Exception:
         return redirect(url_for('signin'))
-    return render_template('dashboard.html', user=user)
+    return render_template('dashboard.html', user=user,
+                           timezones=pytz.common_timezones)
 
 
 @app.route('/inventory/<inventory_id>', strict_slashes=False)
@@ -87,14 +88,19 @@ def inventory(inventory_id):
     return f"You are viewing your {inv.name}"
 
 
-@app.route('/inventory/create', methods=['POST', 'GET'], strict_slashes=False)
+@app.route('/inventory/create', methods=['POST'], strict_slashes=False)
 def add_inventory():
     """ Creates an inventory for the user. """
     try:
         user = storage.get_users(session['username'])[0]
     except Exception:
         return redirect(url_for('dashboard'))
-    return render_template('create_inv.html', user=user)
+    if request.method == 'POST':
+        inv = user.create_inventory(request.form['inventory-name'],
+                                    request.form['timezone'])
+        if inv:
+            return redirect(url_for('inventory', inventory_id=inv.id))
+    return redirect(url_for('dashboard'))
 
 
 @app.route('/inventory/transactions', strict_slashes=False)
