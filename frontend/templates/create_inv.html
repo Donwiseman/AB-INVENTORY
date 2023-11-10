@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="prac.css">
+    <link rel="stylesheet" href="/static/styles/create_inv.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Main Page</title>
 </head>
@@ -16,7 +16,7 @@
         <div class="popup-content">
             <span class="close" id="close-popup">&times;</span>
             <center><h2>Create Inventory</h2></center>
-            <form id="inventory-form" action="{{ url_for('create_inventory') }}">
+            <form method="POST" id="inventory-form" action="{{ url_for('add_inventory') }}">
                 <div class="input-box">
                     <label for="inventory-name">Inventory Name:</label><br>
                     <input class="text" type="text" name="inventory-name" id="inventory-name" required>
@@ -39,6 +39,6 @@
         </div>
     </div>
 
-    <script src="prac.js"></script>
+    <script src="/static/javascript/create_inv.js"></script>
 </body>
 </html>

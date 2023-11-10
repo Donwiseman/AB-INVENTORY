@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from os import getenv
 from models import storage, User, Inventory
+import pytz
 
 app = Flask(__name__)
 app.secret_key = getenv('AB_SECRET')
@@ -93,7 +94,7 @@ def add_inventory():
         user = storage.get_users(session['username'])[0]
     except Exception:
         return redirect(url_for('dashboard'))
-    return f"We are working on implementing this."
+    return render_template('create_inv.html', user=user)
 
 
 @app.route('/inventory/transactions', strict_slashes=False)
