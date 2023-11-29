@@ -1,0 +1,31 @@
+{% extends "dash.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="/static/styles/items.css">
+{% endblock %}
+{% block navhead %}
+    <h3>Items in {{ inv.name }}</h3>
+{% endblock %}
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ID Number</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Alert Level</th>
+            </tr>
+        </thead>
+        <tbody>
+	{% for item in inv.items %}
+            <tr>
+		<td>{{ item.name }}</td>
+		<td>{{ item.id }}</td>
+		<td>{{ item.quantity }}</td>
+		<td>{{ item.category }}</td>
+		<td>{{ item.alert_level }}</td>
+            </tr>
+	{% endfor %} 
+        </tbody>
+  </table>
+{% endblock %}
