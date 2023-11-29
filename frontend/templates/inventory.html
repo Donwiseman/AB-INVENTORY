@@ -1,0 +1,55 @@
+{% extends "dash.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="/static/styles/inventory.css">
+{% endblock %}
+{% block navhead %}
+    <h3>{{ inv.name }}</h3>
+{% endblock %}
+{% block content %}
+    <div class="popup_add_item">
+        <div style="text-align: center;"><h2>Add More Item Unit</h2></div>
+    </div>
+    <div class="popup_create_item">
+        <div style="text-align: center;"><h2>Add New Item</h2></div>
+	<form action="{{ url_for('create_item') }}" method="post">
+	    <label for="itemName">Name</label>
+	    <input type="text" id="itemName" name="name" placeholder="Fill Item Name" required>
+	    <br>
+	    <label for="costPrice">Cost Price</label>
+	    <input type="number" id="costPrice" name="cost_price" placeholder="Cost price of an item e.g. 25" required>
+	    <br>
+	    <label for="salePrice">Sale Price</label>
+	    <input type="number" id="salePrice" name="sale_price" placeholder="Sale price of an item e.g. 30" required>
+	    <br>
+	    <label for="newItemQuantity">Quantity</label>
+	    <input type="number" id="newItemQuantity" name="quantity" placeholder="quantity of item purchased e.g. 10" required>
+	    <br>
+	    <label for="total">Total Purchase Cost</label>
+	    <input type="number" id="total" name="total" placeholder="Total cost of purchasing items">
+	    <br>
+	    <label for="itemUnit">Unit Name</label>
+	    <input type="text" id="itemUnit" name="unit" placeholder="Name of a unit of the item e.g. satchet">
+	    <br>
+	    <label for="itemCategory">Category</label>
+	    <input type="text" id="itemCategory" name="category" placeholder="Category Item Belongs to e.g. Fruits">
+	    <br>
+	    <label for="itemAlertLevel">Alert For Low Quantity</label>
+	    <input type="number" id="itemAlertLevel" name="alert_level" placeholder="Amount to be alerted of low item quantity e.g. 5">
+	    <br>
+	    <input type="submit" value="Submit">
+    </div>
+    <nav id="inv-nav">
+        <div class="nav-cont"><a href="{{ url_for('inventory', inventory_id=inv.id) }}">Dashboard</a></div>
+        <div class="nav-cont"><a href="{{ url_for('items') }}">Items<i class="fas fa-angle-right dropdown"></i></a>
+	    <div><a class="item_search" href="#">Search</a></div>
+	    <div><a class="add_item" href="#">Add More Unit</a></div>
+	    <div><a class="create_item" href="#">Add New Item</a></div>
+	    <div><a href="{{ url_for('remove_item') }}">Remove</a></div>
+	</div>
+	<div class="nav-cont"><a href="{{ url_for('sale') }}">Sale Order</a></div>
+	<div class="nav-cont"><a class="new_item" href="{{ url_for('add_item') }}">Add More Stocks</a></div>
+        <div class="nav-cont"><a href="{{ url_for('show_transactions') }}">Transactions</a></div>
+        <div class="nav-cont"><a href="{{ url_for('alerts') }}">Alerts</a></div>
+    </nav>
+    <script src="/static/javascript/inventory.js"></script>
+{% endblock %}

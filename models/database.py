@@ -56,6 +56,10 @@ class Database:
         return self.__session.query(Inventory).filter(Inventory.id ==
                                                       inventory_id).all()
 
+    def get_item(self, item_id):
+        """ Return a list containing the specified Inventory. """
+        return self.__session.query(Item).filter(Item.id == item_id).all()
+
     def user_via_email(self, email):
         """ Get user via their email. """
         return self.__session.query(User).filter(User.email == email).all()
